@@ -1,5 +1,5 @@
 const CACHE_NAME = 'pierreflix-v1';
-
+  
 // Liste des fichiers à conserver en mémoire sur le téléphone
 const ASSETS = [
   './',
