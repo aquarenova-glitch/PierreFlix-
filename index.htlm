@@ -489,6 +489,461 @@ const FILMS_DEFAUT = [
  {title:"Arrête-moi si tu peux", year:2002, type:"DVD", lienVideo:"https://ok.ru/videoembed/7544706370065" ,cat:"comedie", img:"https://fr.web.img6.acsta.net/c_310_420/medias/nmedia/00/02/54/32/aff2.jpg", youtube:"https://share.google/QYLPNEAV4cCSvXDwS", resume:"Dans les années soixante, le jeune Frank Abagnale Jr. est passé maître dans l'art de l'escroquerie, allant jusqu'à détourner 2,5 millions de dollars et à figurer sur les listes du FBI comme l'un des dix individus les plus recherchés des Etats-Unis. Véritable caméléon, Frank revêt des identités aussi diverses que celles de pilote de ligne, de médecin, de professeur d'université ou encore d'assistant du procureur. Carl Hanratty, agent du FBI à l'apparence stricte, fait de la traque de Frank Abagnale Jr. sa mission prioritaire, mais ce dernier reste pendant longtemps insaisissable...", actors:"Leonardo DiCaprio, Tom Hanks, Christopher Walken, Amy Adams, Nathalie Baye"},
 {title:"Assassins", year:1995, type:"DVD", lienVideo:"https://ok.ru/videoembed/10450116807185" , cat:"action", img:"https://fr.web.img4.acsta.net/c_310_420/medias/nmedia/18/65/04/25/19721070.jpg", youtube:"https://youtu.be/8UK8FRU5kPY", resume:"Robert Rath est le meilleur tueur à gages de sa profession. Alors qu'il est sur le point de se retirer discrètement, un autre tueur jeune et plein de fougue nommé Miguel Bain tue un « client » à sa place, et décide bientôt de s'en prendre à Rath lui-même. Celui-ci s'allie à Electra, une pirate informatique, qui était une cible de Rath, afin de contrer les plans de Bain et de leur employeur commun.", actors:"Sylvester Stallone, Antonio Banderas, Julianne Moore"},
 {title:"Astérix - Le Secret de la potion magique", year:2018, type:"Blu-ray 3D", cat:"famille", img:"https://fr.web.img4.acsta.net/c_310_420/pictures/23/12/12/16/57/3092330.jpg", youtube:"https://youtu.be/gXbR3zonMRk", resume:"À la suite d’une chute lors de la cueillette du gui, le druide Panoramix décide qu’il est temps d’assurer l’avenir du village. Accompagné d’Astérix et Obélix, il entreprend de parcourir le monde gaulois à la recherche d’un jeune druide talentueux à qui transmettre le Secret de la Potion Magique…", actors:"Christian Clavier, Guillaume Briat, Alex Lutz, Alexandre Astier, Elie Semoun"},
+  {title:"Astérix et Obélix contre César", year:1999, type:"DVD", lienVideo:"https://ok.ru/videoembed/9716618562104" , cat:"famille", img:"https://fr.web.img6.acsta.net/c_310_420/medias/03/66/76/036676_af.jpg", youtube:"https://youtu.be/teVUv9EXqII?is=2i0_eXHaKr-YhQO3", resume:"La Gaule en l'an 50 avant Jésus-Christ, est occupée par les Romains. Un seul village résiste, grâce à la potion magique préparée par le druide Panoramix. Au moment où César se prépare à envahir l'Angleter#compteur{
+  background:#032541;
+  padding:6px 12px;
+  border-radius:6px;
+  font-size:13px;
+  margin-left:auto;
+  white-space:nowrap;
+}
+
+#filterType, #filterCat, #filterDecennie {
+  width: 90px!important;
+  min-width: 90px!important;
+  max-width: 90px!important;
+  flex: 0 0 90px!important;
+  padding: 10px 4px!important;
+  font-size: 12px!important;
+  text-overflow: ellipsis!important;
+  overflow: hidden!important;
+  white-space: nowrap!important;
+  -webkit-appearance: none!important;
+  appearance: none!important;
+  background: white url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e") no-repeat right 4px center!important;
+  background-size: 12px!important;
+}
+
+input, select, button{
+  padding:10px;
+  border:none;
+  border-radius:6px;
+  font-size:14px;
+}
+
+button{
+  background:#e50914;
+  color:white;
+  cursor:pointer;
+}
+
+button:hover{
+  background:#f40612;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap:10px;
+  padding:15px;
+}
+
+.card{
+  background:#1c1c1c;
+  border-radius:10px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:transform 0.2s;
+}
+
+.card:hover{
+  transform:scale(1.05);
+}
+
+.card img{
+  width:100%;
+  height:240px;
+  object-fit:cover;
+  display:block;
+}
+
+.info{
+  padding:10px;
+  color:white;
+}
+
+.title{
+  font-weight:bold;
+  margin-bottom:4px;
+}
+
+.small{
+  font-size:12px;
+  color:#aaa;
+  margin-top:3px;
+}
+
+/* POPUP FICHE FILM STYLE TMDB */
+.popup-film{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.95);
+  display:none;
+  z-index:100;
+  overflow-y:auto;
+}
+
+.film-header{
+  position:relative;
+  background:#032541;
+  color:white;
+  padding:30px 20px;
+  display:flex;
+  gap:30px;
+  flex-wrap:wrap;
+}
+
+.film-poster{
+  width:300px;
+  border-radius:10px;
+  box-shadow:0 0 20px rgba(0,0,0,0.5);
+}
+
+.film-details{
+  flex:1;
+  min-width:300px;
+}
+
+.film-details h1{
+  margin:0;
+  font-size:2.2em;
+}
+
+.film-details.year{
+  opacity:0.8;
+  font-weight:300;
+}
+
+.film-meta{
+  margin:15px 0;
+  display:flex;
+  gap:15px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+
+.film-meta.tag{
+  background:rgba(255,255,255,0.1);
+  padding:4px 10px;
+  border-radius:4px;
+  font-size:14px;
+}
+
+.film-actions{
+  display:flex;
+  gap:15px;
+  margin:20px 0;
+  flex-wrap:wrap;
+}
+
+.film-actions button{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  background:#032541;
+  border:2px solid white;
+}
+
+.film-actions button:hover{
+  background:white;
+  color:#032541;
+}
+
+.film-synopsis h3{
+  margin:20px 0 10px 0;
+  font-size:1.3em;
+}
+
+.film-synopsis p{
+  line-height:1.6;
+  opacity:0.9;
+}
+
+.close-film{
+  position:absolute;
+  top:15px;
+  right:15px;
+  background:rgba(0,0,0,0.6);
+  border:none;
+  color:white;
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  font-size:20px;
+  cursor:pointer;
+}
+
+/* POPUP A ACHETER - VERSION PAGE */
+.popup{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:#0f0f0f;
+  display:none;
+  flex-direction:column;
+  z-index:90;
+  overflow-y:auto;
+}
+
+.popup-acheter-header{
+  position:sticky;
+  top:0;
+  background:#000;
+  padding:15px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+  z-index:5;
+  border-bottom:2px solid #e50914;
+}
+
+.popup-acheter-header h2{
+  margin:0;
+  color:white;
+  flex:1;
+}
+
+#compteurAcheter{
+  background:#e50914;
+  padding:6px 12px;
+  border-radius:20px;
+  font-size:13px;
+  font-weight:bold;
+  color:white;
+}
+
+#searchAcheter{
+  padding:10px 15px;
+  width:220px;
+  background:#222;
+  color:white;
+  border:1px solid #444;
+  border-radius:6px;
+}
+
+.popup-acheter-content{
+  padding:15px;
+  flex:1;
+}
+
+.grid-acheter{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap:12px;
+}
+
+.card-acheter{
+  background:#1c1c1c;
+  border-radius:10px;
+  overflow:hidden;
+  border-left:3px solid #e50914;
+  padding:12px;
+  color:white;
+}
+
+.card-acheter .title{
+  font-weight:bold;
+  font-size:14px;
+}
+
+.card-acheter .small{
+  font-size:11px;
+  color:#aaa;
+  margin-top:4px;
+}
+/* TABLETTES 601-900px : 6 colonnes */
+@media (min-width: 601px) and (max-width: 900px){
+.grid{
+    grid-template-columns: repeat(6, 1fr);
+    gap:8px;
+  }
+.card img{
+    height:200px;
+  }
+}
+
+/* TELEPHONES < 600px : 5 colonnes */
+@media (max-width: 600px){
+.grid{
+    grid-template-columns: repeat(5, 1fr);
+    gap:6px;
+    padding:10px;
+  }
+.card img{
+    height:106px;
+  }
+.info{
+    display:none;
+  }
+.film-header{
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+  }
+.film-poster{
+    width:200px;
+  }
+  #compteur{
+    margin-left:0;
+    order:10;
+    width:100%;
+    text-align:center;
+  }
+}
+.popup-video{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.95);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:200;
+}
+
+.popup-video-box{
+  width:90%;
+  max-width:900px;
+  position:relative;
+}
+
+.popup-video iframe{
+  width:100%;
+  height:50vh;
+  border:none;
+  border-radius:10px;
+}
+
+.close-video{
+  position:absolute;
+  top:-40px;
+  right:0;
+  background:#e50914;
+  border:none;
+  color:white;
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  font-size:20px;
+  cursor:pointer;
+}
+
+@media (max-width: 600px){
+.popup-video iframe{
+    height:30vh;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <h2>🍿 PierreFLIX</h2>
+  <select id="filterType">
+    <option value="">Tous supports</option>
+    <option value="DVD">DVD</option>
+    <option value="Blu-ray">Blu-ray</option>
+    <option value="Blu-ray 3D">Blu-ray 3D</option>
+  </select>
+
+  <select id="filterCat">
+    <option value="">Catégories</option>
+  </select>
+
+  <select id="filterDecennie">
+    <option value="">Décennies</option>
+  </select>
+
+  <input type="text" id="search" placeholder="Rechercher...">
+  <button id="btnAcheter" onclick="showAcheter()">🛒 À acheter</button>
+  <button onclick="location.reload()">🔄 MAJ</button>
+  <div id="compteur">0 films</div>
+</header>
+
+<div class="grid" id="grid"></div>
+
+<!-- POPUP FICHE FILM TMDB STYLE -->
+<div class="popup-film" id="popupFilm">
+  <div class="film-header">
+    <button class="close-film" onclick="closeFilm()">✕</button>
+    <img id="fPoster" class="film-poster" src="" alt="">
+    <div class="film-details">
+      <h1><span id="fTitle"></span> <span class="year" id="fYear"></span></h1>
+      <div class="film-meta">
+        <span class="tag" id="fType"></span>
+        <span class="tag" id="fCat"></span>
+        <span id="fDate"></span>
+      </div>
+      <div class="film-actions">
+        <button onclick="openTrailer()">▶️ Bande-annonce</button>
+        <button id="btnVoirFilm" onclick="voirFilm()" style="display:none">🎬 Voir le film</button>
+      </div>
+      <div class="film-synopsis">
+        <h3>Synopsis</h3>
+        <p id="fResume"></p>
+        <h3>Acteurs</h3>
+        <p id="fActors"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- POPUP A ACHETER -->
+<div class="popup" id="popupAcheter">
+  <div class="popup-acheter-header">
+    <h2>🛒 Films à acheter</h2>
+    <div id="compteurAcheter">0 films</div>
+    <input type="text" id="searchAcheter" placeholder="Filtrer...">
+    <button onclick="closeAcheter()" style="background:#333">✕ Fermer</button>
+  </div>
+  <div class="popup-acheter-content">
+    <div class="grid-acheter" id="gridAcheter"></div>
+  </div>
+</div>
+
+<!-- POPUP LECTEUR VIDEO -->
+<div class="popup-video" id="popupVideo" onclick="if(event.target === this) closeVideo()">
+  <div class="popup-video-box">
+    <button class="close-video" onclick="closeVideo()">✕</button>
+<iframe id="videoFrame" src="" allowfullscreen allow="autoplay; fullscreen; encrypted-media" referrerpolicy="no-referrer"></iframe>
+  </div>
+</div>
+
+<script>
+/* =========================
+   BASE DE DONNÉES - Modifie directement ici
+   Format: {title:"", year:1999, type:"Blu-ray", cat:"Action", img:"", youtube:"", resume:"", actors:"", lienVideo:""}
+   Pour les séries: cat:"Série"
+   Le champ lienVideo est OPTIONNEL : ne le mets que sur les films où tu as le lien
+========================= */
+const FILMS_DEFAUT = [
+
+
+{title:"7 ans de mariage", year:2003, type:"DVD", lienVideo:"https://ok.ru/videoembed/7839258118673" , cat:"comedie", img:"https://fr.web.img4.acsta.net/c_310_420/medias/nmedia/18/35/09/93/affiche.jpg", youtube:"https://youtu.be/yJxAOxbMUvQ?is=foQu9z9iTg7S4-qZ", resume:"Jean, marié depuis sept ans, s'ennuie profondément dans son couple. Lors d'un mariage, il retrouve son ex, Alice, et replonge dans une liaison passionnée. Entre remords, désir et habitudes conjugales, la comédie observe avec ironie le fameux 'cap des sept ans'.", actors:"Vincent Elbaz, Alexandra Vandernoot, Sylvie Testud"},
+  {title:"2012", year:2009, type:"Blu-ray", cat:"sf", img:"https://fr.web.img6.acsta.net/c_310_420/medias/nmedia/18/68/10/09/19186143.jpg", youtube:"https://youtu.be/m33rzUxflto", resume:"Les Mayas, l'une des plus fascinantes civilisations que la Terre ait portées, nous ont transmis une prophétie : leur calendrier prend fin en 2012, et notre monde aussi. Depuis, les astrologues l'ont confirmé, les numérologues l'ont prédit, les géophysiciens trouvent cela dangereusement plausible, et même les experts scientifiques gouvernementaux finissent par arriver à cette terrifiante conclusion. La prophétie maya a été examinée, discutée, minutieusement analysée. En 2012, nous saurons tous si elle est vraie, mais quelques-uns auront été prévenus depuis longtemps… Lorsque les plaques tectoniques se mettent à glisser, provoquant de multiples séismes et détruisant Los Angeles au passage, Jackson Curtis, romancier, et sa famille se jettent à corps perdu, comme des millions d'individus, dans un voyage désespéré. Tous ne pourront pas être sauvés…", actors:"John Cusack, Amanda Peet, Chiwetel Ejiofor"},
+  {title:"300", year:2006, type:"Blu-ray", cat:"peplum", img:"https://fr.web.img6.acsta.net/c_310_420/medias/nmedia/18/36/26/41/18737112.jpg", youtube:"https://share.google/Bg1z5U7eE5r26G2YF", resume:"Adapté du roman graphique de Frank Miller, 300 est un récit épique de la Bataille des Thermopyles, qui opposa en l'an - 480 le roi Léonidas et 300 soldats spartiates à Xerxès et l'immense armée perse. Face à un invincible ennemi, les 300 déployèrent jusqu'à leur dernier souffle un courage surhumain ; leur vaillance et leur héroïque sacrifice inspirèrent toute la Grèce à se dresser contre la Perse, posant ainsi les premières pierres de la démocratie.", actors:"Gerard Butler, Lena Headey, David Wenham, Dominic West, Rodrigo Santoro, Michael Fassbender"},
+{title:"Le Sixième Sens", year:1999, type:"DVD", lienVideo:"https://ok.ru/videoembed/42169535051" ,  cat:"drame", img:"https://fr.web.img4.acsta.net/c_310_420/medias/nmedia/18/66/15/77/19255607.jpg", youtube:"https://youtu.be/jiRpbXLwu5c", resume:"Cole Sear, garconnet de huit ans est hanté par un terrible secret. Son imaginaire est visité par des esprits menaçants. Trop jeune pour comprendre le pourquoi de ces apparitions et traumatisé par ces pouvoirs paranormaux, Cole s'enferme dans une peur maladive et ne veut reveler à personne la cause de son enfermement, à l'exception d'un psychologue pour enfants. La recherche d'une explication rationnelle guidera l'enfant et le thérapeute vers une vérité foudroyante et inexplicable.", actors:"Bruce Willis, Haley Joel Osment, Toni Collette, Olivia Williams"},
+{title:"Abraham Lincoln, chasseur de vampires", year:2012, type:"Blu-ray 3D", lienVideo:"https://ok.ru/videoembed/41394702963" ,cat:"fiction", img:"https://fr.web.img3.acsta.net/c_310_420/medias/nmedia/18/89/23/12/20161166.jpg", youtube:"https://youtu.be/FKyaGddWwj4", resume:"Lorsqu'Abraham Lincoln découvre que des vampires assoiffés de sang se préparent à envahir le pays, il jure de les éliminer les uns après les autres, à coups de hache. C'est alors que se révèle un chasseur hors pair, menant une guerre secrète sans précédent, avant même de devenir l'illustre figure de la guerre de Sécession.", actors:"Benjamin Walker, Mary Elizabeth Winstead, Rufus Sewell, Dominic Cooper"},
+  {title:"Ah! si j'étais riche", year:2002, type:"DVD", lienVideo:"https://ok.ru/videoembed/3341623233199" , cat:"comedie", img:"https://fr.web.img6.acsta.net/c_310_420/medias/nmedia/00/02/54/75/affiche.jpg", youtube:"https://youtu.be/zbxxFR1KqAE?is=M0DN1oErXpTjx1ay", resume:"Entre sa femme qui engage une procédure de divorce, les dettes qui s'accumulent et un emploi menacé, Aldo Bonnard voit sa vie se déliter, jusqu'au jour où il gagne une fortune au loto. Alors qu'il est sur le point d'annoncer la nouvelle à son épouse, il découvre qu'elle le trompe avec son nouveau patron. Deux solutions se présentent alors à lui : soit partager ses gains faramineux avec elle et... son rival, soit dissimuler sa fortune et feindre avoir gagné après le divorce. Il choisit cette dernière option, mais vit parallèlement et clandestinement comme un homme richissime.", actors:"Jean-Pierre Darroussin, Valeria Bruni Tedeschi, Richard Berry, François Morel"},
+ {title:"Alexandre", year:2004, type:"DVD", cat:"peplum", img:"https://fr.web.img5.acsta.net/c_310_420/medias/nmedia/18/35/23/58/18398340.jpg", youtube:"https://share.google/C4nnI4jktq3Q4lXwa", resume:"La vie d'Alexandre le Grand, narrée par Ptolémée : de son enfance à sa mort, des cours d'Aristote aux conquêtes qui firent sa légende, de l'intimité aux champs de bataille. Fils du roi Philippe II, il soumit la Grèce révoltée, fonda Alexandrie, défit les Perses, s'empara de Babylone et atteint l'Indus pour établir à 32 ans l'un des plus grands empires ayant jamais existé.", actors:"Colin Farrell, Angelina Jolie, Val Kilmer, Jared Leto, Anthony Hopkins"},
+{title:"Alerte !", year:1995, type:"DVD", cat:"action", img:"https://fr.web.img2.acsta.net/c_310_420/medias/nmedia/18/36/09/76/19161301.jpg", youtube:"https://youtu.be/rylUZoB_kUw?is=Tax1ZkJgwGSIlTYt", resume:"Un virus mortel venu d'Afrique se propage dans une petite ville américaine. Le colonel Sam Daniels, virologue de l'armée, se lance dans une course contre la montre pour trouver un remède avant que l'armée ne décide de raser la ville pour endiguer l'épidémie.", actors:"Dustin Hoffman, Rene Russo, Morgan Freeman, Kevin Spacey, Cuba Gooding Jr."},
+{title:"Angry Birds, le film", year:2016, type:"Blu-ray", cat:"famille", img:"https://fr.web.img6.acsta.net/c_310_420/pictures/16/04/13/15/16/128988.jpg", youtube:"https://share.google/P7PWjb1Jogyoyvy1S", resume:"Ce film nous amène sur une île entièrement peuplée d’oiseaux heureux et qui ne volent pas – ou presque. Dans ce paradis, Red, un oiseau avec un problème de colère, le très pressé Chuck, et l’imprévisible Bomb ont toujours été mis à l’écart. Mais lorsqu’arrivent des cochons verts mystérieux sur l’île, ce sera la mission de ce groupe de parias de découvrir ce que trament les cochons.", actors:"Omar Sy, Audrey Lamy, Jason Sudeikis, Josh Gad, Danny McBride"},
+{title:"Ant-Man", year:2015, type:"Blu-ray 3D", cat:"sf", img:"https://fr.web.img2.acsta.net/c_310_420/pictures/15/05/06/16/05/305731.jpg", youtube:"https://share.google/KWq1xequmy2rfU0eA", resume:"Scott Lang, cambrioleur de haut vol, va devoir apprendre à se comporter en héros et aider son mentor, le Dr Hank Pym, à protéger le secret de son spectaculaire costume d’Ant-Man, afin d’affronter une effroyable menace…", actors:"Paul Rudd, Michael Douglas, Evangeline Lilly, Corey Stoll, Bobby Cannavale"},
+{title:"American Pie 3 : Marions-les !", year:2003, type:"DVD", lienVideo:"https://ok.ru/videoembed/9907223267891" ,cat:"comedie", img:"https://fr.web.img5.acsta.net/c_310_420/medias/nmedia/18/35/15/01/18364355.jpg", youtube:"https://youtu.be/6BfFkalaqAk?is=oVLSmZj3MQ8tpYmG", resume:"Jim et Michelle vont enfin se marier, mais leur mariage 'parfait' est menacé par l'arrivée de Stifler, bien décidé à mettre son grain de sel dans l'organisation. Entre beaux-parents coincés et rivalité amoureuse pour séduire la demoiselle d'honneur, l'enterrement de vie de garçon va tourner au chaos.", actors:"Jason Biggs, Alyson Hannigan, Seann William Scott"},
+{title:"Aquaman", year:2018, type:"Blu-ray", cat:"sf", img:"https://fr.web.img5.acsta.net/c_310_420/pictures/18/12/13/12/12/2738771.jpg", youtube:"https://www.youtube.com/watch?v=pFI7ovOfY9Y", resume:"Arthur Curry, mi-humain mi-atlante, découvre qu'il est destiné à devenir le roi des Sept Mers. Pour empêcher son demi-frère Orm d'unir les royaumes sous-marins et de déclarer la guerre à la surface, il doit accepter son héritage et revendiquer le trône d'Atlantide.", actors:"Jason Momoa, Amber Heard, Willem Dafoe, Patrick Wilson"},
+ {title:"Arrête-moi si tu peux", year:2002, type:"DVD", lienVideo:"https://ok.ru/videoembed/7544706370065" ,cat:"comedie", img:"https://fr.web.img6.acsta.net/c_310_420/medias/nmedia/00/02/54/32/aff2.jpg", youtube:"https://share.google/QYLPNEAV4cCSvXDwS", resume:"Dans les années soixante, le jeune Frank Abagnale Jr. est passé maître dans l'art de l'escroquerie, allant jusqu'à détourner 2,5 millions de dollars et à figurer sur les listes du FBI comme l'un des dix individus les plus recherchés des Etats-Unis. Véritable caméléon, Frank revêt des identités aussi diverses que celles de pilote de ligne, de médecin, de professeur d'université ou encore d'assistant du procureur. Carl Hanratty, agent du FBI à l'apparence stricte, fait de la traque de Frank Abagnale Jr. sa mission prioritaire, mais ce dernier reste pendant longtemps insaisissable...", actors:"Leonardo DiCaprio, Tom Hanks, Christopher Walken, Amy Adams, Nathalie Baye"},
+{title:"Assassins", year:1995, type:"DVD", lienVideo:"https://ok.ru/videoembed/10450116807185" , cat:"action", img:"https://fr.web.img4.acsta.net/c_310_420/medias/nmedia/18/65/04/25/19721070.jpg", youtube:"https://youtu.be/8UK8FRU5kPY", resume:"Robert Rath est le meilleur tueur à gages de sa profession. Alors qu'il est sur le point de se retirer discrètement, un autre tueur jeune et plein de fougue nommé Miguel Bain tue un « client » à sa place, et décide bientôt de s'en prendre à Rath lui-même. Celui-ci s'allie à Electra, une pirate informatique, qui était une cible de Rath, afin de contrer les plans de Bain et de leur employeur commun.", actors:"Sylvester Stallone, Antonio Banderas, Julianne Moore"},
+{title:"Astérix - Le Secret de la potion magique", year:2018, type:"Blu-ray 3D", cat:"famille", img:"https://fr.web.img4.acsta.net/c_310_420/pictures/23/12/12/16/57/3092330.jpg", youtube:"https://youtu.be/gXbR3zonMRk", resume:"À la suite d’une chute lors de la cueillette du gui, le druide Panoramix décide qu’il est temps d’assurer l’avenir du village. Accompagné d’Astérix et Obélix, il entreprend de parcourir le monde gaulois à la recherche d’un jeune druide talentueux à qui transmettre le Secret de la Potion Magique…", actors:"Christian Clavier, Guillaume Briat, Alex Lutz, Alexandre Astier, Elie Semoun"},
   {title:"Astérix et Obélix contre César", year:1999, type:"DVD", lienVideo:"https://ok.ru/videoembed/9716618562104" , cat:"famille", img:"https://fr.web.img6.acsta.net/c_310_420/medias/03/66/76/036676_af.jpg", youtube:"https://youtu.be/teVUv9EXqII?is=2i0_eXHaKr-YhQO3", resume:"La Gaule en l'an 50 avant Jésus-Christ, est occupée par les Romains. Un seul village résiste, grâce à la potion magique préparée par le druide Panoramix. Au moment où César se prépare à envahir l'Angleterre, il apprend que ce village tient en échec ses troupes et refuse de payer l'impôt. Détritus, gouverneur de la région, est chargé de mater les rebelles…", actors:"Christian Clavier, Gérard Depardieu, Roberto Benigni, Michel Galabru, Laetitia Casta"},
   {title:"Astérix et Obélix : Au service de Sa Majesté", year:2012, type:"Blu-ray", lienVideo:"https://ok.ru/videoembed/7905851607701" , cat:"famille", img:"https://fr.web.img3.acsta.net/c_310_420/medias/nmedia/18/89/32/13/20231929.jpg", youtube:"https://youtu.be/eLr8aU-sTb8", resume:"50 avant Jésus-Christ. César a soif de conquêtes. À la tête de ses glorieuses légions il décide d'envahir cette île située aux limites du monde connu, ce pays mystérieux appelé Brittania, la Bretagne. La victoire est rapide et totale. Enfin... presque. Un petit village breton parvient à lui résister, mais ses forces faiblissent. Cordelia, la reine des Bretons, décide donc d'envoyer son plus fidèle officier, Jolitorax, chercher de l'aide en Gaule, auprès d'un autre petit village, connu pour son opiniâtre résistance aux Romains...", actors:"Édouard Baer, Gérard Depardieu, Guillaume Gallienne, Vincent Lacoste, Valérie Lemercier, Fabrice Luchini, Catherine Deneuve"},
 {title:"Astérix et Obélix : L'Empire du Milieu", year:2023, type:"Blu-ray", lienVideo:"https://ok.ru/videoembed/13163569285649" , cat:"famille", img:"https://fr.web.img2.acsta.net/c_310_420/pictures/23/01/03/15/53/0336388.jpg", youtube:"https://youtu.be/L7Lm7tr14xw", resume:"Nous sommes en 50 avant J.C. L’Impératrice de Chine est emprisonnée suite à un coup d’état fomenté par Deng Tsin Quin, un prince félon. Aidée par Graindemaïs, le marchand phénicien, et par sa fidèle guerrière Tat Han, la princesse Fu-Yi, fille unique de l’impératrice, s’enfuit en Gaule pour demander de l’aide aux deux valeureux guerriers Astérix et Obélix, dotés d’une force surhumaine grâce à leur potion magique. Nos deux inséparables Gaulois acceptent bien sûr de venir en aide à la Princesse pour sauver sa mère et libérer son pays. Et les voici tous en route pour une grande aventure vers la Chine.", actors:"Guillaume Canet, Gilles Lellouche, Vincent Cassel, Jonathan Cohen, Marion Cotillard, Julie Chen, Leanna Chea"},
