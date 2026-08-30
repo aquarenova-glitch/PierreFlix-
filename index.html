@@ -1550,10 +1550,15 @@ document.getElementById("filterCat").addEventListener("change", () => render());
 document.getElementById("filterDecennie").addEventListener("change", () => render());
 document.getElementById("searchAcheter").addEventListener("input", (e) => renderAcheter(e.target.value));
 
-document.addEventListener("DOMContentLoaded", () => {
+// Exécution immédiate + secours sur la charge complète de la page
+initFiltres();
+render();
+
+window.addEventListener("load", () => {
   initFiltres();
   render();
 });
+
 
 /* =========================
    ENREGISTREMENT SERVICE WORKER (PWA / HORS LIGNE)
