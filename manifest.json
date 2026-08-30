@@ -1,0 +1,18 @@
+{
+  "short_name": "PierreFLIX",
+  "name": "PierreFLIX — Mon Catalogue",
+  "description": "Application personnelle de films, séries et liste à acheter.",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3172/3172522.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "./pierreflix.html",
+  "background_color": "#141414",
+  "theme_color": "#E50914",
+  "display": "standalone",
+  "orientation": "portrait"
+}
